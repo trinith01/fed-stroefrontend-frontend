@@ -5,7 +5,7 @@ import { Home, ChevronRight, Package, Tag, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import ProductTable from "@/components/productTable";
-import { AddProduct } from "@/components/PopOuts/addProduct";
+import { AddProduct } from "@/components/PopOuts/AddProduct";
 import { useGetAllCategoriesQuery, useGetProductsQuery } from "@/lib/api";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";

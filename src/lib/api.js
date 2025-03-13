@@ -8,7 +8,18 @@ console.log(baseUrl)
 
 export const Api = createApi({
   reducerPath: "Api",
-  baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
+  // baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://fed-storefront-backend-trinith.onrender.com/api/",
+    prepareHeaders: async (headers, { getState }) => {
+      const token = await window.Clerk?.session?.getToken();
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     // Product API Endpoints
     getProducts: builder.query({

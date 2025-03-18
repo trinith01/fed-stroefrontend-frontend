@@ -10,7 +10,7 @@ export const Api = createApi({
   reducerPath: "Api",
   // baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://fed-storefront-backend-trinith.onrender.com/",
+    baseUrl: "https://fed-storefront-backend-trinith.onrender.com/api/",
     prepareHeaders: async (headers, { getState }) => {
       const token = await window.Clerk?.session?.getToken();
       if (token) {

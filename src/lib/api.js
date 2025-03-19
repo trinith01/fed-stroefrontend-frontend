@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const baseUrl = import.meta.env.VITE_BASE_URL;
-console.log(baseUrl)
+// const baseUrl = import.meta.env.VITE_BASE_URL;
+// console.log(baseUrl)
 
 
 
@@ -23,29 +23,29 @@ export const Api = createApi({
   endpoints: (builder) => ({
     // Product API Endpoints
     getProducts: builder.query({
-      query: () => "/products",
+      query: () => "products",
     }),
     getProductsById: builder.query({
-      query: (id) => `/products/${id}`,
+      query: (id) => `products/${id}`,
     }),
 
     addProduct: builder.mutation({
       query: (newProduct) => ({
-        url: "/products",
+        url: "products",
         method: "POST",
         body: newProduct,
       }),
     }),
     deleteProduct: builder.mutation({
       query: (id) => ({
-        url: `/products/${id}`,
+        url: `products/${id}`,
         method: "DELETE",
       }),
       
     }),
     updateProduct: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/products/${id}`,
+        url: `products/${id}`,
         method: "PUT",
         body: data,
       }),
@@ -53,16 +53,16 @@ export const Api = createApi({
 
     // Order API Endpoints
     getOrders: builder.query({
-      query: (orderId) => "/orders",
+      query: (orderId) => "orders",
     }),
 
     getOrdersByUserId: builder.query({
-      query: (userId) => `/orders/${userId}`,
+      query: (userId) => `orders/${userId}`,
     }),
    
     addOrder: builder.mutation({
       query: (newOrder) => ({
-        url: "/orders",
+        url: "orders",
         method: "POST",
         body: newOrder,
       }),
@@ -70,27 +70,27 @@ export const Api = createApi({
     
   createCategory: builder.mutation({
       query: (newCategory) => ({
-        url: "/categories",
+        url: "categories",
         method: "POST",
         body: newCategory,
       }),
     }),  
     getAllCategories: builder.query({
-      query: () => "/categories",
+      query: () => "categories",
     }),
     getCategoryById: builder.query({
-      query: (id) => `/categories/${id}`,
+      query: (id) => `categories/${id}`,
     }),
     updateCategoryById: builder.mutation({
       query: ({ id, updatedCategory }) => ({
-        url: `/categories/${id}`,
+        url: `categories/${id}`,
         method: "PUT",
         body: updatedCategory,
       }),
     }),
     deleteCategoryById: builder.mutation({
       query: (id) => ({
-        url: `/categories/${id}`,
+        url: `categories/${id}`,
         method: "DELETE",
       }),
     }),

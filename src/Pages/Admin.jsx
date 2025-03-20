@@ -154,7 +154,7 @@ export default function Admin() {
   return (
     <div className="p-6 space-y-6 bg-background">
       {/* Dashboard Header */}
-      <div className="flex flex-wrap items-center justify-start gap-8 p-4 bg-white shadow-md rounded-lg">
+      <div className="flex flex-wrap items-center justify-start gap-8 p-4  shadow-md rounded-lg">
         {/* Left Section: Title & Subtitle */}
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>

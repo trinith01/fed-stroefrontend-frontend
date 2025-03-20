@@ -157,8 +157,8 @@ export default function Admin() {
       <div className="flex flex-wrap items-center justify-start gap-8 p-4  shadow-md rounded-lg">
         {/* Left Section: Title & Subtitle */}
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-500">Welcome back to your store overview.</p>
+          <h1 className="text-3xl font-bold ">Dashboard</h1>
+          <p className="text-gray-300">Welcome back to your store overview.</p>
         </div>
 
       

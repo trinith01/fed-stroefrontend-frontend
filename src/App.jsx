@@ -29,7 +29,7 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+        <ClerkProvider publishableKey="pk_test_aW50ZW5zZS1wYW50aGVyLTkyLmNsZXJrLmFjY291bnRzLmRldiQ" afterSignOutUrl="/">
           <Router>
             <Routes>
               <Route path="/sign-in" element={<SignInPage />} />

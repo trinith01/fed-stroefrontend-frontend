@@ -20,7 +20,7 @@ import {
   Search,
   Package,
   Folders,
-  Folder
+  Folder,
 } from "lucide-react";
 
 import {
@@ -45,6 +45,7 @@ import {
 import { useGetProductsQuery, useGetOrdersQuery } from "@/lib/api";
 import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ProductManagement from "./productMangement";
 import { CartTable } from "@/components/cartItemTable";
 
@@ -153,34 +154,29 @@ export default function Admin() {
   return (
     <div className="p-6 space-y-6 bg-background">
       {/* Dashboard Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-wrap items-center justify-start gap-8 p-4 bg-white shadow-md rounded-lg">
+        {/* Left Section: Title & Subtitle */}
         <div>
-          <h1 className="text-3xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground">
-            Welcome back to your store overview.
-          </p>
+          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-gray-500">Welcome back to your store overview.</p>
         </div>
+
+      
+
+        {/* Right Section: Control Buttons */}
         <div className="flex items-center space-x-4">
           <Link to="/product-inventory">
-            <Button className="flex items-center gap-2">
-              <Package className="w-4 h-4" />
+            <Button className="flex items-center gap-2 bg-blue-600 text-white hover:bg-blue-700">
+              <Package className="w-5 h-5" />
               Product Control
             </Button>
           </Link>
           <Link to="/category-management">
-            <Button className="flex items-center gap-2">
-              <Folder className="w-4 h-4" />
+            <Button className="flex items-center gap-2 bg-green-600 text-white hover:bg-green-700">
+              <Folder className="w-5 h-5" />
               Category Control
             </Button>
           </Link>
-        </div>
-        <div className="relative">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Search..."
-            className="w-full rounded-lg bg-background pl-8 md:w-[300px]"
-          />
         </div>
       </div>
 

@@ -24,23 +24,22 @@ import { useNavigate } from "react-router-dom";
 export default function CategoryManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [deleteCategory] = useDeleteCategoryByIdMutation();
-  const { user , isSignedIn } = useUser()
-  const navigate = useNavigate()
+  const { user, isSignedIn } = useUser();
+  const navigate = useNavigate();
 
-
- 
- 
-  
-
-  if(isSignedIn && user?.publicMetadata?.role !== "admin"){
-    navigate("/")
+  if (isSignedIn && user?.publicMetadata?.role !== "admin") {
+    navigate("/");
   }
-
 
   const { data: res, isLoading, isError, refetch } = useGetAllCategoriesQuery();
   const categories = res?.data || [];
 
-  if (isLoading) return < div className="text-center"><Spinner size ="md" color ="red"/></div>;
+  if (isLoading)
+    return (
+      <div className="text-center">
+        <Spinner size="md" color="red" />
+      </div>
+    );
   if (isError)
     return (
       <motion.div
@@ -80,11 +79,16 @@ export default function CategoryManagement() {
       </div>
 
       {/* Header */}
-      <header className="mb-8">
-        <div className="flex justify-between items-center mb-4">
+
+      <header className="mb-8 bg-white shadow-md border border-gray-200 rounded-lg p-6">
+        <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold">Category Management</h1>
-            <p className="mt-1 text-sm">Manage your product categories</p>
+            <h1 className="text-4xl font-bold text-gray-800">
+              Category Management
+            </h1>
+            <p className="mt-1 text-sm text-gray-500">
+              Manage and organize your product categories efficiently
+            </p>
           </div>
           <AddCategory />
         </div>
@@ -92,7 +96,7 @@ export default function CategoryManagement() {
 
       {/* Categories Table */}
       <main>
-        <div className="shadow-sm rounded-lg overflow-hidden">
+        <div className="shadow-sm rounded-lg overflow-hidden border-orange-600 border-2">
           <Table>
             <TableHeader>
               <TableRow>
@@ -115,7 +119,7 @@ export default function CategoryManagement() {
                           <Eye className="h-4 w-4" />
                           <span className="sr-only">View details</span>
                         </Button>
-                        <UpdateCategory id = {category._id} />
+                        <UpdateCategory id={category._id} />
                         <Button
                           variant="ghost"
                           size="icon"
@@ -131,7 +135,7 @@ export default function CategoryManagement() {
               ) : (
                 <TableRow>
                   <TableCell colSpan={3} className="text-center py-4">
-                    <EmptyCategories/>
+                    <EmptyCategories />
                   </TableCell>
                 </TableRow>
               )}

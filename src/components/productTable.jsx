@@ -27,7 +27,7 @@ export default function ProductTable({products}) {
   }
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md  border-orange-600 border-2">
       <Table>
         <TableHeader>
           <TableRow>

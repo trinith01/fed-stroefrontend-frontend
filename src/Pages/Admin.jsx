@@ -18,6 +18,9 @@ import {
   ShoppingCart,
   Users,
   Search,
+  Package,
+  Folders,
+  Folder
 } from "lucide-react";
 
 import {
@@ -42,6 +45,8 @@ import {
 import { useGetProductsQuery, useGetOrdersQuery } from "@/lib/api";
 import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
+import ProductManagement from "./productMangement";
+import { CartTable } from "@/components/cartItemTable";
 
 // Register ChartJS components
 ChartJS.register(
@@ -154,6 +159,20 @@ export default function Admin() {
           <p className="text-muted-foreground">
             Welcome back to your store overview.
           </p>
+        </div>
+        <div className="flex items-center space-x-4">
+          <Link to="/product-inventory">
+            <Button className="flex items-center gap-2">
+              <Package className="w-4 h-4" />
+              Product Control
+            </Button>
+          </Link>
+          <Link to="/category-management">
+            <Button className="flex items-center gap-2">
+              <Folder className="w-4 h-4" />
+              Category Control
+            </Button>
+          </Link>
         </div>
         <div className="relative">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -320,15 +339,27 @@ export default function Admin() {
         <TabsContent value="recent-orders" className="mt-4">
           <Card>
             <CardContent className="p-0">
-              <Table className= "border-2 border-orange-500 shadow-2xl rounded-lg">
+              <Table className="border-2 border-orange-500 shadow-2xl rounded-lg">
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="bg-orange-500 text-white">Order ID</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Date</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Customer</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Total</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Status</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Actions</TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Order ID
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Date
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Customer
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Total
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Status
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Actions
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -376,22 +407,36 @@ export default function Admin() {
         <TabsContent value="low-stock" className="mt-4">
           <Card>
             <CardContent className="p-0">
-              <Table className= "border-2 border-orange-500 shadow-2xl rounded-lg">
+              <Table className="border-2 border-orange-500 shadow-2xl rounded-lg">
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="bg-orange-500 text-white">#</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Name</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Category</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Stock</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Price</TableHead>
-                    <TableHead className="bg-orange-500 text-white">Actions</TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      #
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Name
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Category
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Stock
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Price
+                    </TableHead>
+                    <TableHead className="bg-orange-500 text-white">
+                      Actions
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {lowStockProducts.length > 0 ? (
                     lowStockProducts.map((product, index) => (
                       <TableRow key={product._id}>
-                        <TableCell className="font-medium">{index + 1}</TableCell>
+                        <TableCell className="font-medium">
+                          {index + 1}
+                        </TableCell>
                         <TableCell>{product.productName}</TableCell>
                         <TableCell>{product.category.category}</TableCell>
                         <TableCell>
@@ -412,7 +457,10 @@ export default function Admin() {
                     ))
                   ) : (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center bg-red-200 text-weight-bold">
+                      <TableCell
+                        colSpan={6}
+                        className="text-center bg-red-200 text-weight-bold"
+                      >
                         No low stock products found
                       </TableCell>
                     </TableRow>
@@ -426,10 +474,9 @@ export default function Admin() {
         <TabsContent value="top-selling" className="mt-4">
           <Card>
             <CardContent className="p-0">
-              <Table className= "border-2 border-orange-500 shadow-2xl rounded-lg">
+              <Table className="border-2 border-orange-500 shadow-2xl rounded-lg">
                 <TableHeader>
                   <TableRow>
-                   
                     <TableHead className="bg-orange-500 text-white">
                       Name
                     </TableHead>
@@ -442,20 +489,17 @@ export default function Admin() {
                     <TableHead className="bg-orange-500 text-white">
                       Revenue
                     </TableHead>
-                   
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {topSellingProducts.map((product) => (
                     <TableRow key={product._id}>
-                      
                       <TableCell>{product.productName}</TableCell>
                       <TableCell>{product.category.category}</TableCell>
                       <TableCell>{product.saleCount}</TableCell>
                       <TableCell>
                         ${product.offerPrice * product.saleCount}
                       </TableCell>
-                      
                     </TableRow>
                   ))}
                 </TableBody>

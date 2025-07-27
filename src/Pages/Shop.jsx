@@ -39,7 +39,7 @@ export default function Shop() {
   const filteredProducts = products.filter(
     (product) =>
       (selectedCategories.has("All") ||
-        selectedCategories.has(product.category.category)) &&
+        selectedCategories.has(product?.category?.category)) &&
       product.productName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 

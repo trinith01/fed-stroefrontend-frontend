@@ -11,6 +11,7 @@ export const Api = createApi({
   // baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   baseQuery: fetchBaseQuery({
     baseUrl: "https://fed-storefrontend-backend-trinith.onrender.com/api/",
+    //baseUrl: "http://localhost:8000/api/",
     prepareHeaders: async (headers, { getState }) => {
       const token = await window.Clerk?.session?.getToken();
       if (token) {

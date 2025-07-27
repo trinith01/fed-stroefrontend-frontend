@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import { useGetProductsQuery, useGetAllCategoriesQuery } from '@/lib/api';
-import { Spinner } from '@/components/ui/spinner';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { Tag } from 'lucide-react';
-import ProductCard from '@/components/product-card';
+import React, { useState } from "react";
+import { useGetProductsQuery, useGetAllCategoriesQuery } from "@/lib/api";
+import { Spinner } from "@/components/ui/spinner";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Tag } from "lucide-react";
+import ProductCard from "@/components/product-card";
 
 const Products = () => {
   const { data: products, isLoading, isError, error } = useGetProductsQuery();
   const { data: res } = useGetAllCategoriesQuery();
-  
+
   const categories = res?.data || [];
   const allCategories = [{ category: "All", _id: "all" }, ...categories];
 
-  const [selectedCategories, setSelectedCategories] = useState(new Set(["All"]));
+  const [selectedCategories, setSelectedCategories] = useState(
+    new Set(["All"])
+  );
 
   const toggleCategory = (category) => {
     const newSelectedCategories = new Set(selectedCategories);
@@ -32,8 +34,10 @@ const Products = () => {
 
   // Filter products by selected category
   const filteredProducts = products
-    ? products.data.filter(product =>
-        selectedCategories.has("All") || selectedCategories.has(product.category.category)
+    ? products.data.filter(
+        (product) =>
+          selectedCategories.has("All") ||
+          selectedCategories.has(product?.category?.category) // ✅ safe check
       )
     : [];
 
@@ -66,14 +70,18 @@ const Products = () => {
       <section>
         <h1 className="text-3xl font-bold m-2">Our Featured Products</h1>
         <Separator />
-        
+
         {/* Category Filters */}
         <div className="flex flex-wrap m-2 gap-2">
           {allCategories.map((category) => (
             <Button
               key={category._id}
               onClick={() => toggleCategory(category.category)}
-              variant={selectedCategories.has(category.category) ? "default" : "outline"}
+              variant={
+                selectedCategories.has(category.category)
+                  ? "default"
+                  : "outline"
+              }
               className="flex items-center gap-2"
             >
               <Tag className="h-4 w-4" />
